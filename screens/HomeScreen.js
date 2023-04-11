@@ -1,3 +1,4 @@
+//  import Core Components
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
@@ -8,6 +9,7 @@ export default function HomeScreen() {
     );
   }
 
+// style the screen and its elements
 const styles = StyleSheet.create({
     title: {
         fontSize: 28,
