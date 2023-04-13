@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function HomeScreen() {
     return (
       <View style={{alignItems: 'center' }}>
-        <Text style={styles.title}>Allo ?</Text>
+        <Text style={styles.title}>Home</Text>
       </View>
     );
   }

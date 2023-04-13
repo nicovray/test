@@ -17,11 +17,11 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
-              if (route.name === "HOME") {
+              if (route.name === "ACCUEIL") {
                 iconName = focused ? "home" : "home-outline";
-              } else if (route.name === "MAP") {
+              } else if (route.name === "CARTE") {
                 iconName = focused ? "map" : "map-outline";
-              } else if (route.name === "STATION") {
+              } else if (route.name === "STATIONS") {
                 iconName = focused ? "bicycle" : "bicycle-outline";
               }
               return <Ionicons name={iconName} size={size} color={color} />;
@@ -32,9 +32,9 @@ export default function App() {
         >
         
         {/* setting up the tab navigation between the 3 screens */}
-          <Tab.Screen name="HOME" component={HomeScreen} />
-          <Tab.Screen name="MAP" component={MapScreen} />
-          <Tab.Screen name="STATION" component={StationScreen} />
+          <Tab.Screen name="ACCUEIL" component={HomeScreen} />
+          <Tab.Screen name="CARTE" component={MapScreen} />
+          <Tab.Screen name="STATIONS" component={StationScreen} />
         </Tab.Navigator>
       </NavigationContainer>
   );
