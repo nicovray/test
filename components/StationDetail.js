@@ -1,62 +1,123 @@
-import { View, Text, StyleSheet } from 'react-native';
-import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useCallback, useState } from "react"; 
+import { View, Text, StyleSheet, FlatList, TextInput } from 'react-native';
+import React, { useCallback, useEffect, useState } from "react"; 
 import { useFocusEffect } from "@react-navigation/native";
 import axios from 'axios'; 
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Station() {
 
-  const [contractData, setContractData] = useState([]); 
+  const [filteredData, setfilteredData] = useState([]);
+  const [masterData, setmasterData] = useState([]);
+  const [search, setSearch] = useState('');
+    
+// get the data from the API
+
+useEffect(() => {
+  fetchData();
+  return () => {
+    
+  }
+}, []);
+
+  const fetchData = () => {
+    const apiURL = 'https://api.jcdecaux.com/vls/v1/stations?contract=Nantes&apiKey=9e784f48908fa7f600eac2db5a130d65193a3f70';
+    fetch(apiURL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setfilteredData(responseJson);
+        setmasterData(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   
-    // get the data from the API
-    useFocusEffect( 
-      useCallback(() => { 
-        (async () => { 
-          try { 
-            const response = await axios.get("https://api.jcdecaux.com/vls/v1/stations/001?contract=Nantes&apiKey=9e784f48908fa7f600eac2db5a130d65193a3f70"); 
-              setContractData(response.data); 
-          } catch (error) { 
-              console.log(error.message); 
-          } 
-        })();
-      }, []) 
+  // display seacrh fonction
+  const searchFilter = (text) => {
+    if (text) {
+      const newData = masterData.filter((item) => {
+        const itemData = item.name
+          ? item.name.toUpperCase()
+          : ''.toUpperCase() ;
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setfilteredData(newData);
+      setSearch(text);
+    } else {
+      setfilteredData(masterData);
+      setSearch(text);
+    }
+  };
+  
+  const ItemView = ({ item }) => {
+    return (
+      <Text style={styles.itemStyle}>
+        {item.name}
+      </Text>
     );
+  };
+
+  const ItemSeparatorView = () => {
+    return (
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
+
 
   return (
-    <View style={styles.container}>
-        <Text style={styles.title}>
-            DETAIL DE LA STATION
-        </Text>
-        <View style={styles.stationBox}>
-                <Text style={styles.nameStation}>Station : {contractData.name}</Text>
-                <Text>Statut : {contractData.status}</Text>
-                <Text>Adresse : {contractData.address}</Text>
-                <Text>Nombres de vélos disponibles : {contractData.available_bike_stands}</Text>
-                <Text>Nombres de bornes libres : {contractData.available_bikes}</Text>
-        </View>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+      {/* display the search bar */}
+          <TextInput
+            style={styles.textInputStyle}
+            value={search}
+            placeholder="Rechercher une station"
+            underlineColorAndroid="transparent"
+            onChangeText={(text) => searchFilter(text)}
+          />
+          <View style={styles.stationBox}>
+          {/* display the list of stations */}
+            <FlatList
+              data={filteredData}
+              keyExtractor={(item, index) => index.toString()}
+              ItemSeparatorComponent={ItemSeparatorView}
+              renderItem={ItemView}
+            />
+          </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 28,
-        color: '#ff4500',
-        marginBottom: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     stationBox: {
-        backgroundColor: "#ffefd5",
-        width: 350,
-        borderRadius: 10,
-        alignItems: "center",
-        padding: 20,
+      backgroundColor: "#ffefd5",
+      width: 350,
+      borderRadius: 10,
+      alignItems: "center",
+      padding: 20,
     },
-    nameStation: {
-        color: '#ff4500',
-        fontWeight: "bold",
-        marginBottom: 10,
-      }
+    itemStyle: {
+      padding: 15,
+    },
+    textInputStyle: {
+      height: 50,
+      width: '100%',
+      borderColor: '#ff4500',
+      borderWidth: 1,
+      paddingLeft: 20,
+      margin: 5,
+      backgroundColor: '#FFFFFF',
+    }
 });
