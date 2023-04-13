@@ -1,19 +1,18 @@
 import * as React from 'react';
 //  import Core Components
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 // import modules components
 import { Modal, Portal, Button, Provider } from 'react-native-paper';
-
 // import custom components
 import Map from '../components/Map';
-import Stations from '../components/Stations';
+import StationsList from '../components/StationsList';
 
 export default function MapScreen() {
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
+  const containerStyle = {backgroundColor: 'white', padding: 20, margin: 20};
 
     return (
       <View style={styles.container}>
@@ -21,7 +20,7 @@ export default function MapScreen() {
             <Map />
             <Portal>
               <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-                <Stations />
+                <StationsList />
               </Modal>
             </Portal>
             <Button
@@ -29,7 +28,7 @@ export default function MapScreen() {
               icon="bike" 
               mode="contained" 
               onPress={showModal}>
-              Voir les stations
+              VOIR LES STATIONS
             </Button>
           </Provider>
       </View>
@@ -46,6 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff4500',
     marginLeft: 100,
     marginRight: 100,
-    marginTop: -50,
+    marginTop: -70,
+    padding: 5,
   },
 });

@@ -1,17 +1,20 @@
 //  import Core Components
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import StationDetail from '../components/StationDetail';
 
 export default function StationScreen() {
     return (
-      <View style={{alignItems: 'center' }}>
-        <Text style={styles.title}>Stations</Text>
+      <View style={styles.container}>
+        <StationDetail />
       </View>
     );
   }
 
-// style the screen and its elements
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 28,
-    }
+  const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#ffff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
 });
