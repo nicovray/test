@@ -40,12 +40,12 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffff',
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: '#ff4500',
     marginLeft: 100,
     marginRight: 100,
-    marginBottom: 5,
+    marginTop: -50,
   },
 });

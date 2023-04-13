@@ -43,7 +43,7 @@ export default function Stations() {
 const styles = StyleSheet.create({
     title: {
       fontSize: 28,
-      color: 'green',
+      color: '#ff4500',
       marginTop: 20,
       marginBottom: 20,
     },
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
       marginBottom: 20,
     },
     nameStation: {
-      color: 'green',
+      color: '#ff4500',
     },
   });
