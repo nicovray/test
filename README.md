@@ -59,7 +59,7 @@ et les dépendances suivantes :
 
 ## Auteurs
 
-* **Nicolas AUVRAY** _alias_ [@nicovray](https://github.com/nicovray)
+**Nicolas AUVRAY** _alias_ [@nicovray](https://github.com/nicovray)
 
 
 ## License
