@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, FlatList, TextInput, Switch } from 'react-native';
 import React, { useEffect, useState } from "react"; 
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Station() {
 
@@ -98,8 +97,8 @@ export default function Station() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View>
+    <View style={styles.container}>
+      
         {/* display the search bar */}
         <TextInput
           style={styles.textInputStyle}
@@ -130,8 +129,7 @@ export default function Station() {
             />
           </View>
         </View>
-      </View>
-          
+                
       {/* display the list of stations */}    
         <View style={styles.listBox}>
           <FlatList
@@ -141,14 +139,19 @@ export default function Station() {
             renderItem={ItemView}
           />
         </View>  
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#ffff',
+      alignItems: 'center',
+    },
     textInputStyle: {
       height: 50,
-      width: '100%',
+      width: 350,
       borderColor: '#ff4500',
       borderWidth: 1,
       paddingLeft: 20,
