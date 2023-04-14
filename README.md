@@ -27,21 +27,21 @@ Ce qu'il est requis pour commencer :
 
 Les étapes pour installer l'application :
 
-Cloner le repo sur votre PC.
-Lancer le terminal, se placer dans le dossier de l'application et taper : "npm install".
+- Cloner le repo sur votre PC.
+- Lancer le terminal, se placer dans le dossier de l'application et taper : "npm install".
 
 
 ## Démarrage
 
-Lancer le serveur dans le terminal en vous plaçant dans le dossier du projet et taper : "npx expo start".
-Lancer Expo Go sur votre smartphone et scanner le QR code affiché dans le terminal :
+- Lancer le serveur dans le terminal en vous plaçant dans le dossier du projet et taper : "npx expo start".
+- Lancer Expo Go sur votre smartphone et scanner le QR code affiché dans le terminal :
 le projet s'affiche sur votre smartphone.
 
 
 ## Fabriqué avec
 
-[VSCode](https://code.visualstudio.com/) - IDE.
-[React Native](https://reactnative.dev/) - Framework JS (front-end)
+- [VSCode](https://code.visualstudio.com/) - IDE.
+- [React Native](https://reactnative.dev/) - Framework JS (front-end)
 et les dépendances suivantes :
 - npx expo install react-native-screens
 - npx expo install react-native-safe-area-context
