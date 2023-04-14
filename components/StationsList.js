@@ -31,8 +31,8 @@ export default function Stations() {
                 <Text style={styles.nameStation}>Station : {item.name}</Text>
                 <Text>Statut : {item.status}</Text>
                 <Text>Adresse : {item.address}</Text>
-                <Text>Nombres de vélos disponibles : {item.available_bike_stands}</Text>
-                <Text>Nombres de bornes libres : {item.available_bikes}</Text>
+                <Text>Nombres de vélos disponibles : {item.available_bikes}</Text>
+                <Text>Nombres de places libres : {item.available_bike_stands}</Text>
               </View>
               )}
           />
