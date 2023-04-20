@@ -7,8 +7,8 @@ export default function Station() {
   const [filteredData, setfilteredData] = useState([]);
   const [masterData, setmasterData] = useState([]);
   const [search, setSearch] = useState('');
-  const [isOpen, setIsOpen] = useState(true);
-  const [isAvailable, setIsAvailable] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false);
 
   // get the list of stations
   useEffect(() => {
@@ -98,41 +98,41 @@ export default function Station() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View>
-        {/* display the search bar */}
-        <TextInput
-          style={styles.textInputStyle}
-          value={search}
-          placeholder="Rechercher une station"
-          underlineColorAndroid="transparent"
-          onChangeText={(text) => searchFilter(text)}
-        />
+      <View style={styles.container}>
+        <View>
+          {/* display the search bar */}
+          <TextInput
+            style={styles.textInputStyle}
+            value={search}
+            placeholder="Rechercher une station"
+            underlineColorAndroid="transparent"
+            onChangeText={(text) => searchFilter(text)}
+          />
 
-        {/* display the switch */}
-        <View style={styles.switchBox}>
-          <View style={styles.switchLine}>
-            <Text>{filterData}Seulement les stations ouvertes</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#ffefd5" }}
-              thumbColor={isOpen ? "#ff4500" : "#f4f3f4"}
-              onValueChange={toggleSwitch1}
-              value={isOpen}
-            />
-          </View>
-          <View style={styles.switchLine}>
-          <Text>{filterData}Seulement les vélos disponibles</Text>
-            <Switch
-              trackColor={{ false: "#767577", true: "#ffefd5" }}
-              thumbColor={isAvailable ? "#ff4500" : "#f4f3f4"}
-              onValueChange={toggleSwitch2}
-              value={isAvailable}
-            />
+          {/* display the switch */}
+          <View style={styles.switchBox}>
+            <View style={styles.switchLine}>
+              <Text>{filterData}Seulement les stations ouvertes</Text>
+              <Switch
+                trackColor={{ false: "#767577", true: "#ffefd5" }}
+                thumbColor={isOpen ? "#ff4500" : "#f4f3f4"}
+                onValueChange={toggleSwitch1}
+                value={isOpen}
+              />
+            </View>
+            <View style={styles.switchLine}>
+              <Text>{filterData}Seulement les vélos disponibles</Text>
+                <Switch
+                  trackColor={{ false: "#767577", true: "#ffefd5" }}
+                  thumbColor={isAvailable ? "#ff4500" : "#f4f3f4"}
+                  onValueChange={toggleSwitch2}
+                  value={isAvailable}
+                />
+            </View>
           </View>
         </View>
-      </View>
           
-      {/* display the list of stations */}    
+        {/* display the list of stations */}
         <View style={styles.listBox}>
           <FlatList
             data={filteredData}
@@ -140,15 +140,20 @@ export default function Station() {
             ItemSeparatorComponent={ItemSeparatorView}
             renderItem={ItemView}
           />
-        </View>  
-    </SafeAreaView>
+        </View>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffff',
+    alignItems: 'center',
+  },
     textInputStyle: {
       height: 50,
-      width: '100%',
+      width: 350,
       borderColor: '#ff4500',
       borderWidth: 1,
       paddingLeft: 20,
